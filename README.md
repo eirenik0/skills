@@ -13,12 +13,12 @@ skills/
     assets/
     mcp/
 templates/
-  skill/
+  skill-name/
 ```
 
 ## Creating a skill
 
-1. Copy `templates/skill/` to `skills/<skill-name>/`.
+1. Copy `templates/skill-name/` to `skills/<skill-name>/`.
 2. Update `skills/<skill-name>/SKILL.md` with a valid `name` and `description`.
 3. Add any optional content in `scripts/`, `references/`, or `assets/`.
 4. If the skill uses MCP servers, run `npx mcporter` in the skill root and keep generated binaries in `mcp/`.

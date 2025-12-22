@@ -12,8 +12,11 @@ This repository manages shared Agent Skills and templates aligned with the Agent
 
 There are no build or test commands in this repository today. When adding automation, prefer documenting exact commands in `README.md` and here.
 
-Examples (if added later):
+Skill validation (local tool):
+- `cd tools/skills-ref && uv sync && source .venv/bin/activate` to install the validator.
 - `skills-ref validate skills/<skill-name>` validates a skill against the Agent Skills spec.
+
+Other examples (if added later):
 - `npx mcporter` (run inside a skill folder) generates MCP binaries into `mcp/`.
 
 ## Coding Style & Naming Conventions
