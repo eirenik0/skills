@@ -22,6 +22,7 @@ templates/
 2. Update `skills/<skill-name>/SKILL.md` with a valid `name` and `description`.
 3. Add any optional content in `scripts/`, `references/`, or `assets/`.
 4. If the skill uses MCP servers, run `npx mcporter` in the skill root and keep generated binaries in `mcp/`.
+   See mcporter docs: https://raw.githubusercontent.com/steipete/mcporter/refs/heads/main/README.md
 
 ## Validation
 

@@ -5,7 +5,7 @@ This repository manages shared Agent Skills and templates aligned with the Agent
 ## Project Structure & Module Organization
 
 - `skills/` contains individual skills, each in its own folder (e.g., `skills/pdf-processing/`). Each skill must include a `SKILL.md` at the root.
-- `templates/skill/` is the starting template for new skills, including optional folders (`scripts/`, `references/`, `assets/`, `mcp/`).
+- `templates/skill-name/` is the starting template for new skills, including optional folders (`scripts/`, `references/`, `assets/`, `mcp/`).
 - `LICENSE` and `README.md` provide legal and high-level usage context.
 
 ## Build, Test, and Development Commands
@@ -17,7 +17,10 @@ Skill validation (local tool):
 - `skills-ref validate skills/<skill-name>` validates a skill against the Agent Skills spec.
 
 Other examples (if added later):
-- `npx mcporter` (run inside a skill folder) generates MCP binaries into `mcp/`.
+- `npx mcporter` (run inside a skill folder) generates MCP binaries into `mcp/`. Typical flow:
+  - Update `config/mcporter.json` with servers and `$env:VAR` placeholders.
+  - `npx mcporter generate-cli --server <name> --config config/mcporter.json --output mcp/<name>.ts --bundle mcp/<name>.js`
+  - Docs: https://raw.githubusercontent.com/steipete/mcporter/refs/heads/main/README.md
 
 ## Coding Style & Naming Conventions
 
@@ -38,4 +41,4 @@ No commit message convention is established yet (only an initial commit exists).
 ## Agent-Specific Instructions
 
 - Skills must follow the Agent Skills spec and be discoverable by name/description.
-- If a skill uses MCP servers, run `npx mcporter` from the skill root and store binaries under `mcp/`.
+- If a skill uses MCP servers, run `npx mcporter` from the skill root and store binaries under `mcp/`. Some servers require real API credentials to generate tool schemas, so prefer `$env:VAR` placeholders in configs.
