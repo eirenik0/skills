@@ -1,37 +1,46 @@
 # Z.AI Web Reader Skill
 
-Web page reading and content extraction using Z.AI web reader APIs via mcporter CLI - no MCP server attachment needed.
+Web page reading using Z.AI HTTP MCP API - direct HTTP calls, no MCP server attachment needed.
 
 ## Features
 
-- Fetch and read web page content
-- Extract article text and main content
-- Parse structured data from pages
+- Full-page content retrieval
+- Structured data extraction
+- Clean content without ads/navigation
+- Returns title, content, metadata, links
 - Alternative to built-in WebFetch tool
-- Clean content extraction without ads/navigation
 
 ## Quick Start
 
-1. **Set API Keys**:
+1. **Set API Key**:
    ```bash
-   export Z_AI_API_KEY="your-api-key-here"
-   export Z_AI_MODE="ZAI"
+   export ZAI_API_KEY="your-api-key-here"
    ```
 
-2. **Read web pages** (tool names to be confirmed):
+2. **Read web pages**:
    ```bash
-   npx mcporter call \
-     --server "@z_ai/mcp-server-web-reader" \
-     --tool webReaderTool \
-     --args '{"url":"https://example.com/article"}' \
-     --env Z_AI_API_KEY="$Z_AI_API_KEY" Z_AI_MODE="ZAI"
+   curl --request POST \
+     --url https://api.z.ai/api/mcp/web_reader/mcp \
+     --header "Authorization: Bearer $ZAI_API_KEY" \
+     --header "Content-Type: application/json" \
+     --data '{
+       "jsonrpc": "2.0",
+       "id": 1,
+       "method": "tools/call",
+       "params": {
+         "name": "webReader",
+         "arguments": {
+           "url": "https://example.com/article"
+         }
+       }
+     }'
    ```
 
 ## Requirements
 
-- Node.js ≥ v22.0.0
+- curl (standard in all environments)
 - Z.AI API key (GLM Coding Plan)
-- mcporter (auto-installed via npx)
+- jq (optional, for JSON parsing)
 
 ## Usage Limits
 
@@ -39,18 +48,14 @@ Web page reading and content extraction using Z.AI web reader APIs via mcporter 
 - Pro: 1,000 web reader requests
 - Max: 4,000 web reader requests
 
-## Development Status
-
-**Note**: This skill is a template pending detailed Z.AI Web Reader API documentation. Tool names and parameters will be updated when official documentation is available.
-
 ## Documentation
 
-- **SKILL.md**: Complete reference (pending API docs)
-- Get API key: https://z.ai
+- **SKILL.md**: Complete MCP API reference with examples
+- Get API key: https://z.ai/manage-apikey/apikey-list
 
 ## Version
 
-1.0 - Initial release (template)
+1.0 - HTTP MCP API
 
 ## License
 
